@@ -32,7 +32,7 @@ export function AchievementModal({ achievement, onClose }: AchievementModalProps
             exit={{ scale: 0, opacity: 0 }}
             transition={{ type: "spring", damping: 15 }}
             onClick={(e) => e.stopPropagation()}
-            className="terminal-card border-primary glow-green p-8 max-w-sm mx-4 text-center relative"
+            className="terminal-card border-foreground p-8 max-w-sm mx-4 text-center relative"
           >
             {/* Close button */}
             <button
@@ -47,7 +47,7 @@ export function AchievementModal({ achievement, onClose }: AchievementModalProps
               initial={{ scale: 0 }}
               animate={{ scale: [0, 1.3, 1] }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="w-24 h-24 mx-auto mb-4 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center glow-green"
+              className="w-24 h-24 mx-auto mb-4 rounded-full bg-foreground/10 border-2 border-foreground flex items-center justify-center"
             >
               <span className="text-5xl">{achievement.icon}</span>
             </motion.div>
@@ -58,11 +58,11 @@ export function AchievementModal({ achievement, onClose }: AchievementModalProps
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
             >
-              <div className="text-xs text-secondary uppercase tracking-wider mb-1 flex items-center justify-center gap-2">
+              <div className="text-xs text-muted-foreground uppercase tracking-wider mb-1 flex items-center justify-center gap-2">
                 <Award className="w-4 h-4" />
                 Achievement Unlocked!
               </div>
-              <h3 className="text-2xl font-bold text-primary glow-text-green mb-2">
+              <h3 className="text-2xl font-bold text-foreground mb-2">
                 {achievement.name}
               </h3>
               <p className="text-muted-foreground text-sm">
@@ -92,7 +92,7 @@ export function AchievementModal({ achievement, onClose }: AchievementModalProps
                     duration: 1,
                     ease: "easeOut",
                   }}
-                  className="absolute w-2 h-2 bg-primary rounded-full"
+                  className="absolute w-2 h-2 bg-foreground rounded-full"
                 />
               ))}
             </div>

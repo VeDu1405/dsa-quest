@@ -60,12 +60,6 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        terminal: {
-          green: "hsl(var(--terminal-green))",
-          cyan: "hsl(var(--terminal-cyan))",
-          amber: "hsl(var(--terminal-amber))",
-          red: "hsl(var(--terminal-red))",
-        },
         difficulty: {
           easy: "hsl(var(--easy))",
           medium: "hsl(var(--medium))",
