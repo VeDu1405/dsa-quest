@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { Folder, Plus, Home, List, CheckCircle, Circle, RotateCcw } from "lucide-react";
-import { getTopics, getQuestions, resetData, getUser } from "@/lib/storage";
+import { getTopics, getQuestions, resetData } from "@/lib/storage";
 import { cn } from "@/lib/utils";
 
 export function Sidebar() {
@@ -22,7 +22,6 @@ export function Sidebar() {
     };
     loadData();
 
-    // Listen for storage changes
     const handleStorageChange = () => loadData();
     window.addEventListener("storage", handleStorageChange);
     window.addEventListener("questionsUpdated", handleStorageChange);
@@ -45,9 +44,9 @@ export function Sidebar() {
       {/* Logo */}
       <div className="p-4 border-b border-border">
         <div className="text-sm text-muted-foreground mb-2">
-          <span className="text-secondary">~/</span>dsa-tracker
+          ~/dsa-tracker
         </div>
-        <div className="flex items-center gap-2 text-primary glow-text-green">
+        <div className="flex items-center gap-2 text-foreground">
           <span className="text-2xl font-bold">{solvedCount}</span>
           <span className="text-muted-foreground text-sm">/ {totalCount} solved</span>
         </div>
@@ -61,7 +60,7 @@ export function Sidebar() {
             className={cn(
               "flex items-center gap-3 px-3 py-2 rounded-sm text-sm transition-all",
               location.pathname === "/" && !currentTopic && !currentFilter
-                ? "bg-primary/20 text-primary border border-primary/50 glow-green"
+                ? "bg-foreground/10 text-foreground border border-foreground/30"
                 : "text-muted-foreground hover:text-foreground hover:bg-muted"
             )}
           >
@@ -74,7 +73,7 @@ export function Sidebar() {
             className={cn(
               "flex items-center gap-3 px-3 py-2 rounded-sm text-sm transition-all",
               location.pathname === "/add"
-                ? "bg-secondary/20 text-secondary border border-secondary/50 glow-cyan"
+                ? "bg-foreground/10 text-foreground border border-foreground/30"
                 : "text-muted-foreground hover:text-foreground hover:bg-muted"
             )}
           >
@@ -86,7 +85,7 @@ export function Sidebar() {
         {/* Filters */}
         <div className="mb-6">
           <div className="text-xs text-muted-foreground uppercase tracking-wider mb-2 px-3">
-            <span className="text-secondary">$</span> filter
+            $ filter
           </div>
           <div className="space-y-1">
             <Link
@@ -111,9 +110,9 @@ export function Sidebar() {
                   : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
               )}
             >
-              <CheckCircle className="w-4 h-4 text-primary" />
+              <CheckCircle className="w-4 h-4 text-foreground" />
               <span>Solved</span>
-              <span className="ml-auto text-xs text-primary">{solvedCount}</span>
+              <span className="ml-auto text-xs text-foreground">{solvedCount}</span>
             </Link>
             <Link
               to="/?filter=unsolved"
@@ -134,7 +133,7 @@ export function Sidebar() {
         {/* Topics */}
         <div>
           <div className="text-xs text-muted-foreground uppercase tracking-wider mb-2 px-3">
-            <span className="text-secondary">$</span> topics
+            $ topics
           </div>
           <div className="space-y-1">
             {topics.map((topic) => {
@@ -147,14 +146,14 @@ export function Sidebar() {
                   className={cn(
                     "flex items-center gap-3 px-3 py-2 rounded-sm text-sm transition-all",
                     currentTopic === topic
-                      ? "bg-muted text-foreground border-l-2 border-primary"
+                      ? "bg-muted text-foreground border-l-2 border-foreground"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                   )}
                 >
                   <Folder className="w-4 h-4" />
                   <span className="truncate">{topic}</span>
                   <span className="ml-auto text-xs">
-                    <span className="text-primary">{solved}</span>
+                    <span className="text-foreground">{solved}</span>
                     <span className="text-muted-foreground">/{questions.length}</span>
                   </span>
                 </Link>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, CheckCircle, Circle, Trash2, Edit } from "lucide-react";
 import { Question, Difficulty } from "@/types";
-import { solveQuestion, deleteQuestion, SolveResult } from "@/lib/storage";
+import { solveQuestion, deleteQuestion } from "@/lib/storage";
 import { cn } from "@/lib/utils";
 import { XPGainAnimation } from "./XPGainAnimation";
 import { AchievementModal } from "./AchievementModal";
@@ -64,8 +64,8 @@ export function QuestionCard({ question, onUpdate }: QuestionCardProps) {
         exit={{ opacity: 0, scale: 0.9 }}
         transition={{ duration: 0.2 }}
         className={cn(
-          "terminal-card-glow relative group",
-          question.solved && "border-primary/30"
+          "terminal-card relative group",
+          question.solved && "border-foreground/30"
         )}
       >
         {/* XP Animation */}
@@ -81,8 +81,8 @@ export function QuestionCard({ question, onUpdate }: QuestionCardProps) {
             className={cn(
               "mt-1 transition-all",
               question.solved
-                ? "text-primary cursor-default"
-                : "text-muted-foreground hover:text-primary hover:scale-110"
+                ? "text-foreground cursor-default"
+                : "text-muted-foreground hover:text-foreground hover:scale-110"
             )}
           >
             {question.solved ? (
@@ -98,8 +98,8 @@ export function QuestionCard({ question, onUpdate }: QuestionCardProps) {
               <Link
                 to={`/question/${question.id}`}
                 className={cn(
-                  "font-medium hover:text-primary transition-colors truncate",
-                  question.solved ? "text-primary" : "text-foreground"
+                  "font-medium hover:text-foreground/80 transition-colors truncate",
+                  question.solved ? "text-foreground" : "text-foreground"
                 )}
               >
                 {question.title}
@@ -109,7 +109,7 @@ export function QuestionCard({ question, onUpdate }: QuestionCardProps) {
                 href={question.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-secondary transition-colors flex-shrink-0"
+                className="text-muted-foreground hover:text-foreground transition-colors flex-shrink-0"
               >
                 <ExternalLink className="w-4 h-4" />
               </a>
@@ -138,7 +138,7 @@ export function QuestionCard({ question, onUpdate }: QuestionCardProps) {
           <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
             <Link
               to={`/question/${question.id}`}
-              className="p-2 text-muted-foreground hover:text-secondary transition-colors"
+              className="p-2 text-muted-foreground hover:text-foreground transition-colors"
             >
               <Edit className="w-4 h-4" />
             </Link>
@@ -153,7 +153,7 @@ export function QuestionCard({ question, onUpdate }: QuestionCardProps) {
 
         {/* Solved indicator line */}
         {question.solved && (
-          <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-l-sm" />
+          <div className="absolute left-0 top-0 bottom-0 w-1 bg-foreground rounded-l-sm" />
         )}
       </motion.div>
 
