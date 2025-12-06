@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
-import { Folder, Plus, Home, List, CheckCircle, Circle, RotateCcw } from "lucide-react";
-import { getTopics, getQuestions, resetData } from "@/lib/storage";
+import { Folder, Plus, Home, List, CheckCircle, Circle } from "lucide-react";
+import { getTopics, getQuestions } from "@/lib/storage";
 import { cn } from "@/lib/utils";
 
 export function Sidebar() {
@@ -30,14 +30,6 @@ export function Sidebar() {
       window.removeEventListener("questionsUpdated", handleStorageChange);
     };
   }, [location]);
-
-  const handleReset = () => {
-    if (confirm("Reset all data? This cannot be undone.")) {
-      resetData();
-      window.dispatchEvent(new Event("questionsUpdated"));
-      window.location.href = "/";
-    }
-  };
 
   return (
     <aside className="w-64 border-r border-border bg-sidebar flex flex-col">
@@ -162,17 +154,6 @@ export function Sidebar() {
           </div>
         </div>
       </nav>
-
-      {/* Reset button */}
-      <div className="p-4 border-t border-border">
-        <button
-          onClick={handleReset}
-          className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-destructive transition-colors w-full"
-        >
-          <RotateCcw className="w-4 h-4" />
-          <span>Reset Data</span>
-        </button>
-      </div>
     </aside>
   );
 }
